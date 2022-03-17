@@ -2,15 +2,18 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/cart">Carrito</router-link>
+      <router-link to="/Cart">Carrito</router-link>
     </div>
-    <h1 v-if="isMock">Working with MOCK data</h1>
     <router-view/>
   </div>
 </template>
 
 <script>
+import api_url from "./utils/api";
 export default {
+  created(){
+    fetch(api_url("/products"))
+  },
   computed: {
     isMock() {
       return process.env.VUE_APP_API_IS_MOCK === "true"
